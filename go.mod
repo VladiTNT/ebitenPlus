@@ -1,4 +1,4 @@
-module vladbiten
+module ebitenPlus
 
 go 1.25.5
 
