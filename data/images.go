@@ -5,7 +5,8 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
-func (a *AssetManager) LoadImageFromFile(path string) *ebiten.Image {
+// Loads an ebiten.Image from a static file if not cached.
+func (a *AssetManager) GetImageFromFile(path string) *ebiten.Image {
 	if i, ok := a.images[path]; ok {
 		return i
 	}
@@ -21,7 +22,8 @@ func (a *AssetManager) LoadImageFromFile(path string) *ebiten.Image {
 	return img
 }
 
-func (a *AssetManager) LoadImageFromFS(path string) *ebiten.Image {
+// Loads an ebiten.Image from the manager's file system if not cached.
+func (a *AssetManager) GetImageFromFS(path string) *ebiten.Image {
 	if i, ok := a.images[path]; ok {
 		return i
 	}

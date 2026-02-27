@@ -13,7 +13,7 @@ import (
 //
 // AssetManager can also use data from io.fs file systems.
 //
-// Your audio and image data is cached in maps, so use the "Load..." methods as much as you want
+// Your audio and image data is cached in maps, so use the "Get..." methods as much as you want
 // they won't cause new allocations.
 //
 // If anything goes wrong, errors will be sent into a channel and you can use the "Errors()"
@@ -28,7 +28,7 @@ type AssetManager struct {
 }
 
 // Makes a new AssetManager, if you are only gonna load data from static assets, you can just
-// pass nil for the fileSystem.
+// pass nil for the fileSystem. (Don't try to use the FS "Get" functions if you do this.)
 //
 // Sample rate should ideally be 44100 or 48000.
 func NewAssetManager(sampleRate int, fileSystem fs.FS) *AssetManager {

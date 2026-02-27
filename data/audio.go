@@ -9,7 +9,8 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/audio/wav"
 )
 
-func (a *AssetManager) LoadMP3FromFile(path string) []byte {
+// Loads MP3 data from a static file if not cached.
+func (a *AssetManager) GetMP3FromFile(path string) []byte {
 	if b, ok := a.audios[path]; ok {
 		return b
 	}
@@ -37,7 +38,8 @@ func (a *AssetManager) LoadMP3FromFile(path string) []byte {
 	return r
 }
 
-func (a *AssetManager) LoadWavFromFile(path string) []byte {
+// Loads Wav data from a static file if not cached.
+func (a *AssetManager) GetWavFromFile(path string) []byte {
 	if b, ok := a.audios[path]; ok {
 		return b
 	}
@@ -65,7 +67,8 @@ func (a *AssetManager) LoadWavFromFile(path string) []byte {
 	return r
 }
 
-func (a *AssetManager) LoadVorbisFromFile(path string) []byte {
+// Loads Vorbis data from a static file if not cached.
+func (a *AssetManager) GetVorbisFromFile(path string) []byte {
 	if b, ok := a.audios[path]; ok {
 		return b
 	}
@@ -93,7 +96,8 @@ func (a *AssetManager) LoadVorbisFromFile(path string) []byte {
 	return r
 }
 
-func (a *AssetManager) LoadMP3FromFS(path string) []byte {
+// Loads MP3 data from the manager's file system if not cached.
+func (a *AssetManager) GetMP3FromFS(path string) []byte {
 	if b, ok := a.audios[path]; ok {
 		return b
 	}
@@ -121,7 +125,8 @@ func (a *AssetManager) LoadMP3FromFS(path string) []byte {
 	return r
 }
 
-func (a *AssetManager) LoadWavFromFS(path string) []byte {
+// Loads Wav data from the manager's file system if not cached.
+func (a *AssetManager) GetWavFromFS(path string) []byte {
 	if b, ok := a.audios[path]; ok {
 		return b
 	}
@@ -149,7 +154,8 @@ func (a *AssetManager) LoadWavFromFS(path string) []byte {
 	return r
 }
 
-func (a *AssetManager) LoadVorbisFromFS(path string) []byte {
+// Loads Vorbis data from the manager's file system if not cached.
+func (a *AssetManager) GetVorbisFromFS(path string) []byte {
 	if b, ok := a.audios[path]; ok {
 		return b
 	}
