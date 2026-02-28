@@ -1,4 +1,4 @@
-module ebitenPlus
+module github.com/VladiTNT/ebitenplus
 
 go 1.25.5
 

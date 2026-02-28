@@ -1,9 +1,10 @@
 package main
 
 import (
-	"ebitenPlus/data"
-	"ebitenPlus/tests/data/assets"
 	"fmt"
+
+	"github.com/VladiTNT/ebitenplus/data"
+	"github.com/VladiTNT/ebitenplus/tests/data/assets"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
