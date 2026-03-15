@@ -5,8 +5,8 @@ import "image/color"
 // Basic colors.
 var (
 	ColorRED          = color.RGBA{255, 0, 0, 255}
-	ColorBLUE         = color.RGBA{0, 255, 0, 255}
-	ColorGREEN        = color.RGBA{0, 0, 255, 255}
+	ColorBLUE         = color.RGBA{0, 0, 255, 255}
+	ColorGREEN        = color.RGBA{0, 255, 0, 255}
 	ColorORANGE       = color.RGBA{255, 128, 0, 255}
 	ColorYELLOW       = color.RGBA{255, 255, 0, 255}
 	ColorLIME         = color.RGBA{128, 255, 0, 255}
