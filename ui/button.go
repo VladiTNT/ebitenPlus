@@ -27,6 +27,10 @@ type BasicButton struct {
 
 	IsHeld  bool
 	IsHover bool
+	// IsClicked is true if the user has clicked the button but they haven't let go of the input.
+	// It's main purpose is for buttons to still keep their "when held" look even after their
+	// action has been executed but the user is still holding the button.
+	IsClicked bool
 
 	heldTouchIds        []ebiten.TouchID
 	justPressedTouchIds []ebiten.TouchID
@@ -74,7 +78,13 @@ func (b *BasicButton) OnClick(btn ebiten.MouseButton, do func()) {
 	}
 
 	if (b.IsHover && inpututil.IsMouseButtonJustPressed(btn)) || touched {
+		b.IsClicked = true
 		do()
+		// This behaves in a weird way when I click for like one frame, lol.
+	} else if !inpututil.IsMouseButtonJustReleased(btn) && b.IsClicked {
+		b.IsClicked = true
+	} else {
+		b.IsClicked = false
 	}
 }
 
