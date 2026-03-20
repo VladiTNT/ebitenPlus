@@ -1,4 +1,4 @@
-package graphics
+package ebitenPlus
 
 // A Point is an X, Y float64 coordinate pair. The axes increase right and down.
 type Point struct {

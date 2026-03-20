@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/VladiTNT/ebitenplus/data"
-	"github.com/VladiTNT/ebitenplus/tests/data/assets"
+	"github.com/VladiTNT/ebitenPlus/data"
+	"github.com/VladiTNT/ebitenPlus/tests/data/assets"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"

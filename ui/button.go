@@ -3,7 +3,7 @@ package ui
 import (
 	"image/color"
 
-	"github.com/VladiTNT/ebitenplus"
+	"github.com/VladiTNT/ebitenPlus"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
 	"github.com/hajimehoshi/ebiten/v2/vector"
@@ -63,7 +63,7 @@ func (b *BasicButton) Update() {
 	b.heldTouchIds = ebiten.AppendTouchIDs(b.heldTouchIds[:0])
 	b.justPressedTouchIds = inpututil.AppendJustPressedTouchIDs(b.justPressedTouchIds[:0])
 
-	b.IsHover = ebitenplus.AABB(x, y, b.X, b.X+b.W, b.Y, b.Y+b.H)
+	b.IsHover = ebitenPlus.AABB(x, y, b.X, b.X+b.W, b.Y, b.Y+b.H)
 }
 
 // Detects single taps and executes the given function.
@@ -71,7 +71,7 @@ func (b *BasicButton) OnClick(btn ebiten.MouseButton, do func()) {
 	touched := false
 	for _, id := range b.justPressedTouchIds {
 		x, y := ebiten.TouchPosition(id)
-		if ebitenplus.AABB(x, y, b.X, b.X+b.W, b.Y, b.Y+b.H) {
+		if ebitenPlus.AABB(x, y, b.X, b.X+b.W, b.Y, b.Y+b.H) {
 			touched = true
 			break
 		}
@@ -93,7 +93,7 @@ func (b *BasicButton) WhenHeld(btn ebiten.MouseButton, do func()) {
 	touched := false
 	for _, id := range b.heldTouchIds {
 		x, y := ebiten.TouchPosition(id)
-		if ebitenplus.AABB(x, y, b.X, b.X+b.W, b.Y, b.Y+b.H) {
+		if ebitenPlus.AABB(x, y, b.X, b.X+b.W, b.Y, b.Y+b.H) {
 			touched = true
 			break
 		}

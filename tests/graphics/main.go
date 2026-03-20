@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/VladiTNT/ebitenplus/data"
-	"github.com/VladiTNT/ebitenplus/graphics"
+	"github.com/VladiTNT/ebitenPlus"
+	"github.com/VladiTNT/ebitenPlus/data"
+	"github.com/VladiTNT/ebitenPlus/graphics"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -49,7 +50,7 @@ func (g *Game) Update() error {
 		g.P.Pos.X += 2
 	}
 
-	g.Cam.Follow(graphics.Pt(g.P.Pos.X+15, g.P.Pos.Y+15), 0.05)
+	g.Cam.Follow(ebitenPlus.Pt(g.P.Pos.X+15, g.P.Pos.Y+15), 0.05)
 
 	return nil
 }

@@ -3,6 +3,7 @@ package ui
 import (
 	"image/color"
 
+	"github.com/VladiTNT/ebitenPlus/graphics"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 	"github.com/hajimehoshi/ebiten/v2/vector"
@@ -22,8 +23,8 @@ func NewLabeledButton(btn *BasicButton, label string) *LabeledButton {
 	return &LabeledButton{
 		BasicButton:  btn,
 		Label:        label,
-		ColWhenHover: Gray96_ALPHA96,
-		ColWhenHeld:  Gray224,
+		ColWhenHover: graphics.Gray96_ALPHA96,
+		ColWhenHeld:  graphics.Gray224,
 	}
 }
 

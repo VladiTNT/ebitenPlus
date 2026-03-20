@@ -1,5 +1,7 @@
 package graphics
 
+import "github.com/VladiTNT/ebitenPlus"
+
 // A camera is an object that helps you with GeoM transformations for sprites.
 type Camera struct {
 	// These coordinates represent the center of the camera relative to the screen.
@@ -26,21 +28,21 @@ func (c *Camera) SetScreenCoords(x, y float64) {
 }
 
 // Translates p relative to the camera's world position.
-func (c *Camera) ApplyWorldTranslation(p Point) Point {
-	return Pt(p.X+c.Cx-c.Wx, p.Y+c.Cy-c.Wy)
+func (c *Camera) ApplyWorldTranslation(p ebitenPlus.Point) ebitenPlus.Point {
+	return ebitenPlus.Pt(p.X+c.Cx-c.Wx, p.Y+c.Cy-c.Wy)
 }
 
 // Returns the translation for the camera's center.
 // Use for sprites that stay glued to the screen's center (kinda like the player in Terraria).
-func (c *Camera) ApplyCenterTranslation() Point {
-	return Pt(c.Cx, c.Cy)
+func (c *Camera) ApplyCenterTranslation() ebitenPlus.Point {
+	return ebitenPlus.Pt(c.Cx, c.Cy)
 }
 
 // Makes the camera's world position smoothly follow the point p.
 // The implementation is simple using exponential smoothing.
 //
 // Slower speed's are smoother.
-func (c *Camera) Follow(p Point, speed float64) {
+func (c *Camera) Follow(p ebitenPlus.Point, speed float64) {
 	c.Wx += (p.X - c.Wx) * speed
 	c.Wy += (p.Y - c.Wy) * speed
 }

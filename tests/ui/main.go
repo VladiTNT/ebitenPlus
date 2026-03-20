@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/VladiTNT/ebitenplus/ui"
+	"github.com/VladiTNT/ebitenPlus/ui"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
