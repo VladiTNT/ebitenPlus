@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/VladiTNT/ebitenPlus/data"
-	"github.com/VladiTNT/ebitenPlus/tests/data/assets"
+	d "github.com/VladiTNT/ebitenPlus/tests/data"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
@@ -21,7 +21,7 @@ type Game struct {
 func NewGame() *Game {
 	return &Game{
 		Width: 320, Height: 240,
-		As: data.NewAssetManager(44100, assets.Assets),
+		As: data.NewAssetManager(44100, d.Assets),
 	}
 }
 
