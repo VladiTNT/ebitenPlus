@@ -1,6 +1,9 @@
 package graphics
 
-import "github.com/VladiTNT/ebitenPlus"
+import (
+	"github.com/VladiTNT/ebitenPlus"
+	"github.com/hajimehoshi/ebiten/v2"
+)
 
 // A camera is an object that helps you with GeoM transformations for sprites.
 type Camera struct {
@@ -45,4 +48,46 @@ func (c *Camera) ApplyCenterTranslation() ebitenPlus.Point {
 func (c *Camera) Follow(p ebitenPlus.Point, speed float64) {
 	c.Wx += (p.X - c.Wx) * speed
 	c.Wy += (p.Y - c.Wy) * speed
+}
+
+// Makes the camera's world position follow ahead of the point p.
+// This function also takes in the point's velocity to compute how far ahead it should be.
+//
+// maxDist represents how far ahead the camera will try to be, a value of 10-20 is usually good for most
+// games.
+func (c *Camera) FollowAhead(p, vel ebitenPlus.Point, maxDist, speed float64) {
+	targetX := p.X + (vel.X * maxDist)
+	targetY := p.Y + (vel.Y * maxDist)
+
+	c.Wx += (targetX - c.Wx) * speed
+	c.Wy += (targetY - c.Wy) * speed
+}
+
+// Makes the camera's world position follow the point p with an offset based of the cursor position.
+//
+// maxDist is the radius around p after which the camera won't follow the cursor anymore.
+func (c *Camera) FollowCursor(p ebitenPlus.Point, maxDist, speed float64) {
+	x, y := ebiten.CursorPosition()
+
+	targetX := p.X + float64(x) - c.Cx
+	targetY := p.Y + float64(y) - c.Cy
+
+	offX := targetX - p.X
+	offY := targetY - p.Y
+
+	if offX > maxDist {
+		offX = maxDist
+	}
+	if offX < -maxDist {
+		offX = -maxDist
+	}
+	if offY > maxDist {
+		offY = maxDist
+	}
+	if offY < -maxDist {
+		offY = -maxDist
+	}
+
+	c.Wx += (p.X + offX - c.Wx) * speed
+	c.Wy += (p.Y + offY - c.Wy) * speed
 }

@@ -1,10 +1,13 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/VladiTNT/ebitenPlus"
 	"github.com/VladiTNT/ebitenPlus/data"
 	"github.com/VladiTNT/ebitenPlus/graphics"
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
 const (
@@ -16,7 +19,9 @@ type Game struct {
 	As  *data.AssetManager
 	Cam *graphics.Camera
 
-	P *graphics.BasicSprite
+	P   *graphics.BasicSprite
+	Vel ebitenPlus.Point
+
 	B *graphics.BasicSprite
 }
 
@@ -27,6 +32,8 @@ func NewGame() *Game {
 	g.Cam = graphics.NewCamera(ScreenWidth/2, ScreenHeight/2, 15, 15)
 
 	g.P = graphics.NewBasicSprite(g.As.GetImageFromFile("./tests/graphics/Sprite01.png"), 0, 0)
+	g.Vel = ebitenPlus.Pt(0, 0)
+
 	g.B = graphics.NewBasicSprite(g.As.GetImageFromFile("./tests/graphics/Sprite02.png"), 100, 100)
 
 	return g
@@ -38,19 +45,25 @@ func (g *Game) Update() error {
 	}
 
 	if ebiten.IsKeyPressed(ebiten.KeyUp) {
-		g.P.Pos.Y -= 2
+		g.Vel.Y = -2
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyLeft) {
-		g.P.Pos.X -= 2
+		g.Vel.X = -2
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyDown) {
-		g.P.Pos.Y += 2
+		g.Vel.Y = 2
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyRight) {
-		g.P.Pos.X += 2
+		g.Vel.X = 2
 	}
 
-	g.Cam.Follow(ebitenPlus.Pt(g.P.Pos.X+15, g.P.Pos.Y+15), 0.05)
+	g.P.Pos = g.P.Pos.Add(g.Vel)
+
+	p := ebitenPlus.Pt(g.P.Pos.X+15, g.P.Pos.Y+15)
+
+	g.Cam.FollowCursor(p, 50, 0.2)
+
+	g.Vel = ebitenPlus.Pt(0, 0)
 
 	return nil
 }
@@ -59,6 +72,8 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	g.B.Draw(screen, g.Cam.ApplyWorldTranslation(g.B.Pos))
 
 	g.P.Draw(screen, g.Cam.ApplyWorldTranslation(g.P.Pos))
+
+	ebitenutil.DebugPrint(screen, fmt.Sprintf("Camera: %f, %f", g.Cam.Wx, g.Cam.Wy))
 }
 
 func (g *Game) Layout(w, h int) (int, int) {
