@@ -30,7 +30,7 @@ type AnimationSystem struct {
 	lastFrame        time.Time
 }
 
-// Makes an animation system.
+// Makes a blank animation system.
 func NewAnimationSystem() *AnimationSystem {
 	return &AnimationSystem{
 		animations: make(map[string]*Animation),

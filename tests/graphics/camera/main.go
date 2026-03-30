@@ -19,10 +19,10 @@ type Game struct {
 	As  *data.AssetManager
 	Cam *graphics.Camera
 
-	P   *graphics.BasicSprite
+	P   *graphics.Sprite
 	Vel ebitenPlus.Point
 
-	B *graphics.BasicSprite
+	B *graphics.Sprite
 }
 
 func NewGame() *Game {
@@ -31,10 +31,10 @@ func NewGame() *Game {
 	g.As = data.NewAssetManager(44100, nil)
 	g.Cam = graphics.NewCamera(ScreenWidth/2, ScreenHeight/2, 15, 15)
 
-	g.P = graphics.NewBasicSprite(g.As.GetImageFromFile("./tests/graphics/Sprite01.png"), 0, 0)
+	g.P = graphics.NewSprite(g.As.GetImageFromFile("./tests/graphics/Sprite01.png"), ebitenPlus.Pt(0, 0))
 	g.Vel = ebitenPlus.Pt(0, 0)
 
-	g.B = graphics.NewBasicSprite(g.As.GetImageFromFile("./tests/graphics/Sprite02.png"), 100, 100)
+	g.B = graphics.NewSprite(g.As.GetImageFromFile("./tests/graphics/Sprite02.png"), ebitenPlus.Pt(100, 100))
 
 	return g
 }

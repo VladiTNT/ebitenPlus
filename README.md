@@ -7,3 +7,9 @@ Features:
 - Camera
 
 I will update this library when I want to and when I need to, feel free to use any of the code for personal projects.
+
+#Todo:
+
+- Make a DrawOptions struct for AdvancedSprites.
+- Remake asset manager.
+- Add more QOL methods to AdvancedSprite.
