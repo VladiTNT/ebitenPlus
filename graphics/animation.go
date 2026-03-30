@@ -23,7 +23,7 @@ func NewAnimation(frames []*ebiten.Image, delay time.Duration) *Animation {
 	}
 }
 
-// An animation system keeps track of several animations.
+// An animation system keeps track of several animations and allows for switching between them.
 type AnimationSystem struct {
 	animations       map[string]*Animation
 	CurrentAnimation string
