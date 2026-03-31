@@ -10,9 +10,11 @@ import (
 // AssetMan is an asset manager. It loads assets and caches them for long term use, making sure that you
 // don't load assets more than once.
 //
-// AssetMan can load assets from fs.FS file systems, keep in mind that if you give the asset manager
-// one, it will always check it first when you call a LoadX method, so you should either keep all your
-// assets in an fs.FS or on disk.
+// AssetMan can load assets from fs.FS file systems.
+//
+// AssetMan can load data asyncronously, the main thread spawns a worker to decode the image/audio
+// while game execution continues. GetImage and GetAudioData will both block until their asset has
+// finished loading.
 //
 // NOTE: AssetMan tries to keep a simple API, in order to do this most of it's methods don't return
 // errors, instead, errors are logged using whatever logger the user wants to give it. Keep in mind

@@ -2,8 +2,7 @@ package asset
 
 import "github.com/hajimehoshi/ebiten/v2"
 
-// An Image is a wrapper around an ebiten.Image with a channel that indicates if the asset is ready to
-// use after loading.
+// An Image is a wrapper around an ebiten.Image with a channel indicating if the image is ready to use.
 //
 // It's mostly ment for internal use, I made it public just in case anyone wanted to mess with it.
 type Image struct {
@@ -11,8 +10,8 @@ type Image struct {
 	C   chan struct{}
 }
 
-// Initializes an Image with no asset, meant to reserve space in the map for an image while it's loading
-// asynchronously.
+// Initializes an Image with an empty asset, meant to reserve space in the map for an image while
+// it's loading asynchronously.
 func NewImage() *Image {
 	return &Image{
 		Img: nil,
@@ -25,8 +24,8 @@ func (i *Image) FinishedLoading(img *ebiten.Image) {
 	close(i.C)
 }
 
-// AduioData is a wrapper around the raw byte stream of an audio with a channel that indicates if the
-// asset is ready to use after loading.
+// AduioData is a wrapper around the raw byte stream of an audio with a channel indicating if the
+// audio is ready to use.
 //
 // It's mostly ment for internal use, I made it public just in case anyone wanted to mess with it.
 type AudioData struct {

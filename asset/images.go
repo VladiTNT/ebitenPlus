@@ -2,6 +2,8 @@ package asset
 
 import (
 	"image"
+	_ "image/jpeg"
+	_ "image/png"
 	"io"
 	"io/fs"
 	"os"
